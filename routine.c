@@ -6,7 +6,7 @@
 /*   By: yboumanz <yboumanz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 11:34:43 by yboumanz          #+#    #+#             */
-/*   Updated: 2024/12/22 12:11:32 by yboumanz         ###   ########.fr       */
+/*   Updated: 2024/12/22 15:43:59 by yboumanz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	think(t_philo *philo)
 		current_time = get_time_in_ms();
 		time_since_last_meal = current_time - philo->last_meal;
 		if (time_since_last_meal >= philo->data->pars.time_to_die
-			- philo->data->pars.time_to_eat - 10)
+			- philo->data->pars.time_to_eat - 20)
 		{
 			pthread_mutex_unlock(&philo->last_meal_mutex);
 			break ;
