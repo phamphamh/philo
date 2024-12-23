@@ -6,7 +6,7 @@
 /*   By: yboumanz <yboumanz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 23:31:15 by yboumanz          #+#    #+#             */
-/*   Updated: 2024/12/23 12:36:05 by yboumanz         ###   ########.fr       */
+/*   Updated: 2024/12/23 13:00:05 by yboumanz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,9 @@ int			init_philos(t_data *data);
 int			init_things(t_data *data, char **argv, int argc);
 //ROUTINE
 void		*routine(void *arg);
-void		eat(t_philo *philo);
-void		philo_sleep(t_philo *philo);
-void		think(t_philo *philo);
+int			eat(t_philo *philo);
+int			philo_sleep(t_philo *philo);
+int			think(t_philo *philo);
 int			take_fork(t_philo *philo);
 
 //UTILS
