@@ -6,7 +6,7 @@
 /*   By: yboumanz <yboumanz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 23:31:15 by yboumanz          #+#    #+#             */
-/*   Updated: 2024/12/23 12:36:05 by yboumanz         ###   ########.fr       */
+/*   Updated: 2024/12/23 15:00:48 by yboumanz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void		ft_putchar_fd(char c, int fd);
 void		ft_putendl_fd(char *s, int fd);
 void		ft_putstr_fd(char *s, int fd);
 void		handle_error(char *message, t_data *data);
+bool		is_dead(t_philo *philo);
 
 //PHILO_UTILS
 long long	get_time_in_ms(void);

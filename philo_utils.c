@@ -6,7 +6,7 @@
 /*   By: yboumanz <yboumanz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 02:03:32 by yboumanz          #+#    #+#             */
-/*   Updated: 2024/12/23 12:37:29 by yboumanz         ###   ########.fr       */
+/*   Updated: 2024/12/23 15:59:17 by yboumanz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	precise_sleep(unsigned long time_in_ms)
 
 	start = get_time_in_ms();
 	while ((get_time_in_ms() - start) < time_in_ms)
-		usleep(100);
+		usleep(10);
 }
 
 long long	get_time_in_ms(void)
@@ -36,14 +36,14 @@ int	monitor_while(t_data *data, unsigned long i)
 		> data->pars.time_to_die)
 	{
 		pthread_mutex_unlock(&data->philo[i].last_meal_mutex);
+		pthread_mutex_lock(&data->dead_mutex);
+		data->dead = true;
+		pthread_mutex_unlock(&data->dead_mutex);
 		pthread_mutex_lock(&data->write);
 		printf("%lld %d died\n",
 			get_time_in_ms() - data->start_time,
 			data->philo[i].id);
 		pthread_mutex_unlock(&data->write);
-		pthread_mutex_lock(&data->dead_mutex);
-		data->dead = true;
-		pthread_mutex_unlock(&data->dead_mutex);
 		return (1);
 	}
 	else
@@ -82,13 +82,8 @@ void	*routine_monitor(void *arg)
 
 void	print_status(t_philo *philo, char *status)
 {
-	pthread_mutex_lock(&philo->data->dead_mutex);
-	if (philo->data->dead)
-	{
-		pthread_mutex_unlock(&philo->data->dead_mutex);
+	if (is_dead(philo))
 		return ;
-	}
-	pthread_mutex_unlock(&philo->data->dead_mutex);
 	pthread_mutex_lock(&philo->data->write);
 	printf("%lld %d %s\n",
 		get_time_in_ms() - philo->data->start_time,

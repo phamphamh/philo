@@ -6,7 +6,7 @@
 /*   By: yboumanz <yboumanz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 00:20:04 by yboumanz          #+#    #+#             */
-/*   Updated: 2024/12/22 12:09:46 by yboumanz         ###   ########.fr       */
+/*   Updated: 2024/12/23 13:14:17 by yboumanz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,18 @@ void	ft_putstr_fd(char *s, int fd)
 			s++;
 		}
 	}
+}
+
+bool	is_dead(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->data->dead_mutex);
+	if (philo->data->dead)
+	{
+		pthread_mutex_unlock(&philo->data->dead_mutex);
+		return (true);
+	}
+	pthread_mutex_unlock(&philo->data->dead_mutex);
+	return (false);
 }
 
 void	handle_error(char *message, t_data *data)

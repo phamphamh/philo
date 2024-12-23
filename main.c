@@ -6,7 +6,7 @@
 /*   By: yboumanz <yboumanz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 23:31:33 by yboumanz          #+#    #+#             */
-/*   Updated: 2024/12/22 12:12:44 by yboumanz         ###   ########.fr       */
+/*   Updated: 2024/12/23 14:34:39 by yboumanz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static void	handle_one_philo(t_data *data)
 {
-	pthread_mutex_lock(&data->philo[0].last_meal_mutex);
 	print_status(&data->philo[0], "has taken a fork");
 	precise_sleep(data->pars.time_to_die);
 	pthread_mutex_lock(&data->write);
@@ -22,7 +21,6 @@ static void	handle_one_philo(t_data *data)
 		get_time_in_ms() - data->start_time,
 		data->philo[0].id);
 	pthread_mutex_unlock(&data->write);
-	pthread_mutex_unlock(&data->philo[0].last_meal_mutex);
 }
 
 int	create_threads(t_data *data)
