@@ -6,7 +6,7 @@
 /*   By: yboumanz <yboumanz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 11:34:43 by yboumanz          #+#    #+#             */
-/*   Updated: 2024/12/22 15:45:16 by yboumanz         ###   ########.fr       */
+/*   Updated: 2024/12/23 12:38:09 by yboumanz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,9 @@ void	*routine(void *arg)
 		pthread_mutex_unlock(&philo->data->dead_mutex);
 		take_fork(philo);
 		eat(philo);
+		pthread_mutex_lock(&philo->nb_meal_mutex);
 		philo->nb_meal++;
+		pthread_mutex_unlock(&philo->nb_meal_mutex);
 		if (philo->data->pars.nb_eat > 0 && philo->nb_meal
 			>= philo->data->pars.nb_eat)
 			break ;

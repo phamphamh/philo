@@ -6,7 +6,7 @@
 /*   By: yboumanz <yboumanz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 11:56:09 by yboumanz          #+#    #+#             */
-/*   Updated: 2024/12/22 12:09:37 by yboumanz         ###   ########.fr       */
+/*   Updated: 2024/12/23 12:36:14 by yboumanz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ int	init_philos(t_data *data)
 		data->philo[i].data = data;
 		data->philo[i].data->dead = false;
 		if (pthread_mutex_init(&data->philo[i].left_fork, NULL) != 0
-			|| pthread_mutex_init(&data->philo[i].last_meal_mutex, NULL) != 0)
+			|| pthread_mutex_init(&data->philo[i].last_meal_mutex, NULL) != 0
+				|| pthread_mutex_init(&data->philo[i].nb_meal_mutex, NULL) != 0)
 		{
 			while (i-- > 0)
 			{

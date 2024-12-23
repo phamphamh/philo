@@ -6,7 +6,7 @@
 /*   By: yboumanz <yboumanz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 02:03:32 by yboumanz          #+#    #+#             */
-/*   Updated: 2024/12/23 12:16:06 by yboumanz         ###   ########.fr       */
+/*   Updated: 2024/12/23 12:37:29 by yboumanz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,11 @@ void	*routine_monitor(void *arg)
 		{
 			if (monitor_while(data, i))
 				return (NULL);
+			pthread_mutex_lock(&data->philo[i].nb_meal_mutex);
 			if (data->pars.nb_eat > 0 && data->philo[i].nb_meal
 				>= data->pars.nb_eat)
 				finished_eating++;
+			pthread_mutex_unlock(&data->philo[i].nb_meal_mutex);
 			i++;
 		}
 		if (finished_eating == data->pars.nb_philo)

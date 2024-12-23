@@ -6,7 +6,7 @@
 /*   By: yboumanz <yboumanz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 23:31:15 by yboumanz          #+#    #+#             */
-/*   Updated: 2024/12/22 12:17:08 by yboumanz         ###   ########.fr       */
+/*   Updated: 2024/12/23 12:36:05 by yboumanz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_philo
 	pthread_t				philo;
 	pthread_mutex_t			left_fork;
 	pthread_mutex_t			*right_fork;
+	pthread_mutex_t			nb_meal_mutex;
 	unsigned long			nb_meal;
 	struct s_data			*data;
 }	t_philo;
