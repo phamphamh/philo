@@ -6,7 +6,7 @@
 /*   By: yboumanz <yboumanz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 02:03:32 by yboumanz          #+#    #+#             */
-/*   Updated: 2024/12/22 12:19:23 by yboumanz         ###   ########.fr       */
+/*   Updated: 2024/12/23 12:16:06 by yboumanz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	monitor_while(t_data *data, unsigned long i)
 {
 	pthread_mutex_lock(&data->philo[i].last_meal_mutex);
 	if (get_time_in_ms() - data->philo[i].last_meal
-		>= data->pars.time_to_die)
+		> data->pars.time_to_die)
 	{
 		pthread_mutex_unlock(&data->philo[i].last_meal_mutex);
 		pthread_mutex_lock(&data->write);
