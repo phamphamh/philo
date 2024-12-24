@@ -6,7 +6,7 @@
 /*   By: yboumanz <yboumanz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 02:03:32 by yboumanz          #+#    #+#             */
-/*   Updated: 2024/12/23 15:59:17 by yboumanz         ###   ########.fr       */
+/*   Updated: 2024/12/24 13:55:38 by yboumanz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,12 @@ void	*routine_monitor(void *arg)
 	return (NULL);
 }
 
-void	print_status(t_philo *philo, char *status)
+int	print_status(t_philo *philo, char *status)
 {
-	if (is_dead(philo))
-		return ;
 	pthread_mutex_lock(&philo->data->write);
 	printf("%lld %d %s\n",
 		get_time_in_ms() - philo->data->start_time,
 		philo->id, status);
 	pthread_mutex_unlock(&philo->data->write);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: yboumanz <yboumanz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 23:31:15 by yboumanz          #+#    #+#             */
-/*   Updated: 2024/12/23 15:00:48 by yboumanz         ###   ########.fr       */
+/*   Updated: 2024/12/24 12:22:13 by yboumanz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_philo
 	pthread_mutex_t			nb_meal_mutex;
 	unsigned long			nb_meal;
 	struct s_data			*data;
+	unsigned long			time_to_think;
 }	t_philo;
 
 typedef struct s_pars
@@ -56,16 +57,18 @@ typedef struct s_data
 //MAIN
 int			main(int argc, char **argv);
 int			create_threads(t_data *data);
+bool		is_dead(t_philo *philo);
 
 //INIT
 int			init_input(t_data *data, int argc, char **argv);
 int			init_philos(t_data *data);
 int			init_things(t_data *data, char **argv, int argc);
+
 //ROUTINE
 void		*routine(void *arg);
-void		eat(t_philo *philo);
-void		philo_sleep(t_philo *philo);
-void		think(t_philo *philo);
+int			eat(t_philo *philo);
+int			philo_sleep(t_philo *philo);
+int			think(t_philo *philo);
 int			take_fork(t_philo *philo);
 
 //UTILS
@@ -74,12 +77,11 @@ void		ft_putchar_fd(char c, int fd);
 void		ft_putendl_fd(char *s, int fd);
 void		ft_putstr_fd(char *s, int fd);
 void		handle_error(char *message, t_data *data);
-bool		is_dead(t_philo *philo);
 
 //PHILO_UTILS
 long long	get_time_in_ms(void);
 void		*routine_monitor(void *arg);
-void		print_status(t_philo *philo, char *status);
+int			print_status(t_philo *philo, char *status);
 void		precise_sleep(unsigned long time_in_ms);
 
 #endif

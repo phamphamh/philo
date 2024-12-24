@@ -6,7 +6,7 @@
 /*   By: yboumanz <yboumanz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 23:31:33 by yboumanz          #+#    #+#             */
-/*   Updated: 2024/12/23 14:34:39 by yboumanz         ###   ########.fr       */
+/*   Updated: 2024/12/24 12:21:43 by yboumanz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,18 @@ static void	handle_one_philo(t_data *data)
 		get_time_in_ms() - data->start_time,
 		data->philo[0].id);
 	pthread_mutex_unlock(&data->write);
+}
+
+bool	is_dead(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->data->dead_mutex);
+	if (philo->data->dead)
+	{
+		pthread_mutex_unlock(&philo->data->dead_mutex);
+		return (true);
+	}
+	pthread_mutex_unlock(&philo->data->dead_mutex);
+	return (false);
 }
 
 int	create_threads(t_data *data)

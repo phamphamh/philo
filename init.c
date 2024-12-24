@@ -6,11 +6,29 @@
 /*   By: yboumanz <yboumanz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 11:56:09 by yboumanz          #+#    #+#             */
-/*   Updated: 2024/12/23 12:36:14 by yboumanz         ###   ########.fr       */
+/*   Updated: 2024/12/24 12:36:20 by yboumanz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	set_ttt(t_data *data, int i)
+{
+	if (data->pars.time_to_eat == data->pars.time_to_sleep)
+		data->philo[i].time_to_think = ((data->pars.time_to_sleep * 30) / 100) / 2;
+	if (data->pars.time_to_eat > data->pars.time_to_sleep)
+	{
+		data->philo[i].time_to_think
+			= (data->pars.time_to_eat * 30) / 100
+			- (data->pars.time_to_sleep * 30) / 100;
+	}
+	else
+	{
+		data->philo[i].time_to_think
+			= (data->pars.time_to_sleep * 30) / 100
+			- (data->pars.time_to_eat * 30) / 100;
+	}
+}
 
 int	init_input(t_data *data, int argc, char **argv)
 {
@@ -50,9 +68,10 @@ int	init_philos(t_data *data)
 		data->philo[i].nb_meal = 0;
 		data->philo[i].data = data;
 		data->philo[i].data->dead = false;
+		set_ttt(data, i);
 		if (pthread_mutex_init(&data->philo[i].left_fork, NULL) != 0
 			|| pthread_mutex_init(&data->philo[i].last_meal_mutex, NULL) != 0
-				|| pthread_mutex_init(&data->philo[i].nb_meal_mutex, NULL) != 0)
+			|| pthread_mutex_init(&data->philo[i].nb_meal_mutex, NULL) != 0)
 		{
 			while (i-- > 0)
 			{
