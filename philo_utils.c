@@ -6,7 +6,7 @@
 /*   By: yboumanz <yboumanz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 02:03:32 by yboumanz          #+#    #+#             */
-/*   Updated: 2024/12/24 13:55:38 by yboumanz         ###   ########.fr       */
+/*   Updated: 2024/12/26 11:52:43 by yboumanz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,14 @@ void	*routine_monitor(void *arg)
 int	print_status(t_philo *philo, char *status)
 {
 	pthread_mutex_lock(&philo->data->write);
+	pthread_mutex_lock(&philo->data->dead_mutex);
+	if (philo->data->dead && ft_strcmp(status, "died"))
+	{
+		pthread_mutex_unlock(&philo->data->dead_mutex);
+		pthread_mutex_unlock(&philo->data->write);
+		return (0);
+	}
+	pthread_mutex_unlock(&philo->data->dead_mutex);
 	printf("%lld %d %s\n",
 		get_time_in_ms() - philo->data->start_time,
 		philo->id, status);

@@ -6,21 +6,30 @@
 /*   By: yboumanz <yboumanz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 00:20:04 by yboumanz          #+#    #+#             */
-/*   Updated: 2024/12/24 12:21:28 by yboumanz         ###   ########.fr       */
+/*   Updated: 2024/12/26 11:55:44 by yboumanz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	ft_putchar_fd(char c, int fd)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	write(fd, &c, 1);
+	unsigned int	i;
+
+	i = 0;
+	while (s1[i] && s2[i])
+	{
+		if (s1[i] != s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		i++;
+	}
+	return (0);
 }
 
 void	ft_putendl_fd(char *s, int fd)
 {
 	ft_putstr_fd(s, fd);
-	ft_putchar_fd('\n', fd);
+	write(fd, "\n", 1);
 }
 
 void	ft_putstr_fd(char *s, int fd)
@@ -29,7 +38,7 @@ void	ft_putstr_fd(char *s, int fd)
 	{
 		while (*s)
 		{
-			ft_putchar_fd(*s, fd);
+			write(fd, &*s, 1);
 			s++;
 		}
 	}

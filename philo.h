@@ -6,7 +6,7 @@
 /*   By: yboumanz <yboumanz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 23:31:15 by yboumanz          #+#    #+#             */
-/*   Updated: 2024/12/24 12:22:13 by yboumanz         ###   ########.fr       */
+/*   Updated: 2024/12/26 11:56:38 by yboumanz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int			take_fork(t_philo *philo);
 
 //UTILS
 long long	ft_atol(const char *str);
-void		ft_putchar_fd(char c, int fd);
+int			ft_strcmp(const char *s1, const char *s2);
 void		ft_putendl_fd(char *s, int fd);
 void		ft_putstr_fd(char *s, int fd);
 void		handle_error(char *message, t_data *data);

@@ -6,7 +6,7 @@
 /*   By: yboumanz <yboumanz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 23:31:33 by yboumanz          #+#    #+#             */
-/*   Updated: 2024/12/24 12:21:43 by yboumanz         ###   ########.fr       */
+/*   Updated: 2024/12/26 11:54:18 by yboumanz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	main(int argc, char **argv)
 	unsigned long	i;
 
 	if (argc < 5 || argc > 6)
-		return (ft_putendl_fd("Error: Invalid number of arguments\n", 1), 1);
+		return (ft_putendl_fd("Error: Invalid number of arguments", 1), 1);
 	if (init_things(&data, argv, argc) == 1)
 		return (1);
 	if (data.pars.nb_philo == 1)

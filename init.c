@@ -6,7 +6,7 @@
 /*   By: yboumanz <yboumanz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 11:56:09 by yboumanz          #+#    #+#             */
-/*   Updated: 2024/12/24 12:36:20 by yboumanz         ###   ########.fr       */
+/*   Updated: 2024/12/26 13:02:39 by yboumanz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	set_ttt(t_data *data, int i)
 {
 	if (data->pars.time_to_eat == data->pars.time_to_sleep)
 		data->philo[i].time_to_think = ((data->pars.time_to_sleep * 30) / 100) / 2;
-	if (data->pars.time_to_eat > data->pars.time_to_sleep)
+	else if (data->pars.time_to_eat > data->pars.time_to_sleep)
 	{
 		data->philo[i].time_to_think
 			= (data->pars.time_to_eat * 30) / 100
@@ -28,6 +28,8 @@ void	set_ttt(t_data *data, int i)
 			= (data->pars.time_to_sleep * 30) / 100
 			- (data->pars.time_to_eat * 30) / 100;
 	}
+	//if (data->pars.nb_philo % 2 != 0 && data->philo[i].id % 2 != 0)
+	//	data->philo[i].time_to_think += data->pars.time_to_eat;
 }
 
 int	init_input(t_data *data, int argc, char **argv)
